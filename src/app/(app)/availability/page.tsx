@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { startOfWeek, addWeeks } from "date-fns";
 import { sanityFetch } from "@/sanity/lib/live";
-import { USER_WITH_AVAILABILITY_QUERY } from "@/sanity/queries/users";
+import { USER_WITH_AVAILABILITY_QUERY } from "../../../sanity/queries/users";
 import { HOST_UPCOMING_BOOKINGS_QUERY } from "@/sanity/queries/bookings";
 import { getGoogleBusyTimes } from "@/lib/actions/calendar";
 import { processBookingsWithStatuses } from "@/lib/booking-utils";
