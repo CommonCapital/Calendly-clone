@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { auth } from "@clerk/nextjs/server";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
-export function CTASection() {
+export async function CTASection() {
+  const { userId } = await auth();
+
   return (
     <section className="bg-blue-500 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -16,7 +18,7 @@ export function CTASection() {
             Calvero.
           </p>
           <div className="mt-10">
-            <SignedOut>
+            {!userId ? (
               <SignUpButton mode="modal">
                 <Button
                   size="lg"
@@ -25,8 +27,7 @@ export function CTASection() {
                   Get Started Free
                 </Button>
               </SignUpButton>
-            </SignedOut>
-            <SignedIn>
+            ) : (
               <Button
                 asChild
                 size="lg"
@@ -34,7 +35,7 @@ export function CTASection() {
               >
                 <Link href="/availability">Go to Dashboard</Link>
               </Button>
-            </SignedIn>
+            )}
           </div>
         </div>
       </div>

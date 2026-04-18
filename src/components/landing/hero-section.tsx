@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { auth } from "@clerk/nextjs/server";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { HeroVisual } from "./hero-visual";
 
-export function HeroSection() {
+export async function HeroSection() {
+  const { userId } = await auth();
+
   return (
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-32">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_40%_at_50%_60%,rgba(59,130,246,0.12),transparent)]" />
@@ -25,26 +27,27 @@ export function HeroSection() {
             more &quot;what time works for you?&quot; emails.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <SignedOut>
-              <SignUpButton mode="modal">
-                <Button
-                  size="lg"
-                  className="w-full bg-blue-500 text-base hover:bg-blue-600 sm:w-auto"
-                >
-                  Start Scheduling Free
-                </Button>
-              </SignUpButton>
-              <SignInButton mode="modal">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full text-base sm:w-auto"
-                >
-                  Sign In
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
+            {!userId ? (
+              <>
+                <SignUpButton mode="modal">
+                  <Button
+                    size="lg"
+                    className="w-full bg-blue-500 text-base hover:bg-blue-600 sm:w-auto"
+                  >
+                    Start Scheduling Free
+                  </Button>
+                </SignUpButton>
+                <SignInButton mode="modal">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full text-base sm:w-auto"
+                  >
+                    Sign In
+                  </Button>
+                </SignInButton>
+              </>
+            ) : (
               <Button
                 asChild
                 size="lg"
@@ -52,7 +55,7 @@ export function HeroSection() {
               >
                 <Link href="/availability">Go to Dashboard</Link>
               </Button>
-            </SignedIn>
+            )}
           </div>
         </div>
 
