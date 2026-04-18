@@ -7,7 +7,7 @@ import { HOST_UPCOMING_BOOKINGS_QUERY } from "@/sanity/queries/bookings";
 import { getGoogleBusyTimes } from "@/lib/actions/calendar";
 import { processBookingsWithStatuses } from "@/lib/booking-utils";
 import { AvailabilityCalendar } from "@/components/calendar";
-import { ShareLinkDialog } from "@/components/calendar/components/share-link-dialog";
+//import { ShareLinkDialog } from "@/components/calendar/components/share-link-dialog";
 import { RefreshButton } from "@/components/ui/refresh-button";
 import type {
   TimeBlock,
@@ -124,7 +124,7 @@ export default async function AvailabilityPage() {
         </div>
         <div className="flex gap-2">
           <RefreshButton />
-          <ShareLinkDialog />
+          {/**<ShareLinkDialog />*/}
         </div>
       </div>
       <AvailabilityCalendar
