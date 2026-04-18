@@ -1,5 +1,6 @@
 // Components
 export { AvailabilityCalendar } from "./components/availability-calendar";
+export { DynamicAvailabilityCalendar } from "./components/dynamic-calendar";
 export { CalendarToolbar } from "./components/calendar-toolbar";
 export { CopyDayPopover } from "./components/copy-day-popover";
 

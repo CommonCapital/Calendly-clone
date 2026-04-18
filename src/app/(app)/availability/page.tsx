@@ -6,14 +6,14 @@ import { USER_WITH_AVAILABILITY_QUERY } from "../../../sanity/queries/users";
 import { HOST_UPCOMING_BOOKINGS_QUERY } from "@/sanity/queries/bookings";
 import { getGoogleBusyTimes } from "@/lib/actions/calendar";
 import { processBookingsWithStatuses } from "@/lib/booking-utils";
-import { AvailabilityCalendar } from "@/components/calendar";
-//import { ShareLinkDialog } from "@/components/calendar/components/share-link-dialog";
+import { DynamicAvailabilityCalendar } from "@/components/calendar";
 import { RefreshButton } from "@/components/ui/refresh-button";
 import type {
   TimeBlock,
   BusyBlock,
   BookedBlock,
 } from "@/components/calendar/types";
+import { ShareLinkDialog } from "@/components/calendar/components/share-link-dialog.tsx";
 
 export default async function AvailabilityPage() {
   const { userId } = await auth();
@@ -124,10 +124,10 @@ export default async function AvailabilityPage() {
         </div>
         <div className="flex gap-2">
           <RefreshButton />
-          {/**<ShareLinkDialog />*/}
+          <ShareLinkDialog />
         </div>
       </div>
-      <AvailabilityCalendar
+      <DynamicAvailabilityCalendar
         initialBlocks={initialBlocks}
         busyBlocks={initialBusyBlocks}
         bookedBlocks={bookedBlocks}

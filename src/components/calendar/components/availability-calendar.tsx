@@ -56,7 +56,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 
 const DnDCalendar = withDragAndDrop<CalendarEvent>(Calendar);
 
-interface AvailabilityCalendarProps {
+export interface AvailabilityCalendarProps {
     initialBlocks?: TimeBlock[];
     busyBlocks?: BusyBlock[];
     bookedBlocks?: BookedBlock[];
@@ -266,12 +266,12 @@ export function AvailabilityCalendar({
                         <DialogTitle className="flex items-center gap-2">
                             <div
                                 className={`h-3 w-3 rounded-full ${selectedBooking?.attendeeStatus === "declined"
-                                        ? "bg-red-500"
-                                        : selectedBooking?.attendeeStatus === "tentative"
-                                            ? "bg-amber-500"
-                                            : selectedBooking?.attendeeStatus === "accepted"
-                                                ? "bg-green-600"
-                                                : "bg-gray-500"
+                                    ? "bg-red-500"
+                                    : selectedBooking?.attendeeStatus === "tentative"
+                                        ? "bg-amber-500"
+                                        : selectedBooking?.attendeeStatus === "accepted"
+                                            ? "bg-green-600"
+                                            : "bg-gray-500"
                                     }`}
                             />
                             Meeting Details
@@ -282,12 +282,12 @@ export function AvailabilityCalendar({
                             {/* Guest Status Badge */}
                             <div
                                 className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium ${selectedBooking.attendeeStatus === "declined"
-                                        ? "bg-red-100 text-red-700"
-                                        : selectedBooking.attendeeStatus === "tentative"
-                                            ? "bg-amber-100 text-amber-700"
-                                            : selectedBooking.attendeeStatus === "accepted"
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-gray-100 text-gray-700"
+                                    ? "bg-red-100 text-red-700"
+                                    : selectedBooking.attendeeStatus === "tentative"
+                                        ? "bg-amber-100 text-amber-700"
+                                        : selectedBooking.attendeeStatus === "accepted"
+                                            ? "bg-green-100 text-green-700"
+                                            : "bg-gray-100 text-gray-700"
                                     }`}
                             >
                                 {selectedBooking.attendeeStatus === "declined" &&
