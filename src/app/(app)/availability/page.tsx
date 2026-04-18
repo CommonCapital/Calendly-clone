@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { startOfWeek, addWeeks } from "date-fns";
 import { sanityFetch } from "@/sanity/lib/live";
 import { USER_WITH_AVAILABILITY_QUERY } from "../../../sanity/queries/users";
-import { HOST_UPCOMING_BOOKINGS_QUERY } from "@/sanity/queries/bookings";
+import { HOST_UPCOMING_BOOKINGS_QUERY, type HostUpcomingBooking } from "@/sanity/queries/bookings";
 import { getGoogleBusyTimes } from "@/lib/actions/calendar";
 import { processBookingsWithStatuses } from "@/lib/booking-utils";
 import { DynamicAvailabilityCalendar } from "@/components/calendar";
@@ -42,7 +42,7 @@ export default async function AvailabilityPage() {
   const availability = user?.availability ?? [];
 
   // Process bookings with Google Calendar statuses
-  const { activeBookings } = await processBookingsWithStatuses(bookings ?? []);
+  const { activeBookings } = await processBookingsWithStatuses<HostUpcomingBooking>(bookings ?? []);
 
   // Transform to BookedBlock format
   const bookedBlocks: BookedBlock[] = activeBookings.map((booking) => ({
